@@ -1,9 +1,9 @@
-CREATE TABLE `tb_produtos` (
+CREATE TABLE IF NOT EXISTS `tb_produtos` (
     `id` BIGINT AUTO_INCREMENT PRIMARY KEY UNIQUE,
     `codigo` VARCHAR(255) NOT NULL UNIQUE,
     `nome` VARCHAR(255) NOT NULL,
     `descricao` TEXT NOT NULL,
-    `preco` DOUBLE NOT NULL,
-    `categoria_id` BIGINT,
-    FOREIGN KEY (`categoria_id`) REFERENCES tb_categorias(id)
+    `preco` DECIMAL(10,2) NOT NULL,
+    `idCategoria` BIGINT NOT NULL,
+    FOREIGN KEY (`idCategoria`) REFERENCES `tb_categorias`(`id`)
 );

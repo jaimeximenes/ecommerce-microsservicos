@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,12 +28,13 @@ public class Produto {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
     @Column(nullable = false)
     private double preco;
-    
-    @ManyToOne(cascade = CascadeType.DETACH)
-    Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name="idCategoria", nullable = false)
+    private Categoria categoria;
 }
