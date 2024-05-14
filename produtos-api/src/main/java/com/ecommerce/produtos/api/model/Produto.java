@@ -1,6 +1,5 @@
 package com.ecommerce.produtos.api.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +34,6 @@ public class Produto {
     private double preco;
 
     @ManyToOne
-    @JoinColumn(name="idCategoria", nullable = false)
+    @JoinColumn(name = "idCategoria", nullable = false)
     private Categoria categoria;
 }
