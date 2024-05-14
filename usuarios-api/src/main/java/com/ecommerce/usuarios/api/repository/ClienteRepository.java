@@ -20,8 +20,11 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     Optional<List<Cliente>> findByNomeLike(String cpf);
 
+    Optional<List<Cliente>> findByNomeAndCpf(String cpf, String nome);
+
     Optional<List<Cliente>> findByDataNascimentoBetween(LocalDate dataInicio, LocalDate dataFim);
 
     Optional<List<Cliente>> findByContainsIgnoreCase(String nome);
 
+    boolean existsByEmail(String email);
 }

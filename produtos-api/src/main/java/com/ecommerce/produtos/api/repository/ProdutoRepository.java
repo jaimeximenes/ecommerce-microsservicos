@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.ecommerce.produtos.api.model.Categoria;
 import com.ecommerce.produtos.api.model.Produto;
@@ -19,5 +21,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     Optional<Produto> findByCodigo(String codigo);
 
-    Optional<Produto> findByCategoria(Categoria categoria);
+    @Query("SELECT u FROM tb_produtos u WHERE u.tb_produtos.idCategoria = :idCategoria")
+    Optional<Produto> findByCategoria(@Param("idCategoria") int id);
 }

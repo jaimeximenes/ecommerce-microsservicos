@@ -9,21 +9,22 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="tb_fornecedores")
+@Entity(name = "tb_fornecedores")
 public class Fornecedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable=false)
-    private String nomeFantasia;
     @Column(nullable = false)
+    private String nomeFantasia;
+    @Column(nullable = false, unique = true)
     private String razaoSocial;
     @Column(nullable = false)
     private String cnpj;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     private String telefone;
