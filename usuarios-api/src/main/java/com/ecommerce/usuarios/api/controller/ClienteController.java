@@ -6,6 +6,8 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.usuarios.api.dto.ClienteDTO;
@@ -42,8 +45,23 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/page")
-    public ResponseEntity<Page<Cliente>> obterDadosClientePage(Pageable page) {
+    public ResponseEntity<Page<ClienteDTO>> obterDadosClientePage(Pageable page) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.obterPaginasClientes(page));
+    }
+
+    @GetMapping(value = "/pageWithpaprams")
+    public ResponseEntity<Page<ClienteDTO>> obterDadosClienteWithParams(
+            @PageableDefault(page = 1, size = 5, sort = "nome", direction = Direction.DESC) Pageable page) {
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.obterPaginasClientes(page));
+    }
+
+    @GetMapping(value = "/nome")
+    public ResponseEntity<Page<ClienteDTO>> obterClientesPorNome(@RequestParam("nome") String nome) {
+        List<ClienteDTO> clientes = clienteService.obterClientesPeloNome(nome);
+        if (clientes.isEmpty()) {
+            ResponseEntity.status(HttpStatus.OK).body(clientes);
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @Autowired

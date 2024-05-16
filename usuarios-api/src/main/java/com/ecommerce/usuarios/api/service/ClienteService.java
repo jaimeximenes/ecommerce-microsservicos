@@ -23,14 +23,28 @@ public class ClienteService {
         return clienteRepository.findAll().stream().map(c -> c.convertToDTO()).collect(Collectors.toList());
     }
 
-    public Page<Cliente> obterPaginasClientes(Pageable page) {
-        return clienteRepository.findAll(page);
+    public Page<ClienteDTO> obterPaginasClientes(Pageable page) {
+        return clienteRepository.findAll(page).map(Cliente::convertToDTO);
     }
 
     public ClienteDTO obterCliente(Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if (cliente.isPresent()) {
             return cliente.get().convertToDTO();
+        }
+        return null;
+    }
+
+    public List<ClienteDTO> obterClientesPeloNome(String nome) {
+
+        Optional<List<Cliente>> clientes = clienteRepository.findByNomeLike(nome + "%");
+
+        if (clientes.isEmpty()) {
+            return clienteRepository.findByNomeLike("%" + nome + "%")
+                    .get()
+                    .stream()
+                    .map(c -> c.convertToDTO())
+                    .collect(Collectors.toList());
         }
         return null;
     }
