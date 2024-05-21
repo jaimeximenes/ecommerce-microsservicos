@@ -11,5 +11,5 @@ import com.ecommerce.compras.api.model.Compra;
 public interface CompraRepository extends JpaRepository<Compra, Long> {
     Optional<Compra> findByEmailCliente(String Email);
 
-    Optional<List<Compra>> findByDataNascimentoBetween(Date Date);
+    Optional<List<Compra>> findByDataBetween(Date Date);
 }
