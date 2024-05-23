@@ -56,7 +56,13 @@ public class ClienteService {
         }
         return null;
     }
-
+    public ClienteDTO obterClientePorEmail(String email) {
+        Optional<Cliente> cliente = clienteRepository.findByEmail(email);
+        if (cliente.isPresent()) {
+            return cliente.get().convertToDTO();
+        }
+        return null;
+    }
     @Autowired
     private ClienteRepository clienteRepository;
 

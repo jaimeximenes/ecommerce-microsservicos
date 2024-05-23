@@ -1,6 +1,6 @@
 package com.ecommerce.produtos.api.model;
 
-import com.ecommerce.produtos.api.dto.ProdutoDTO;
+import com.ecommerce.compras.client.produto.ProdutoDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,7 +44,6 @@ public class Produto {
         dto.setId(id);
         dto.setNome(nome);
         dto.setDescricao(descricao);
-        ;
         dto.setPreco(preco);
         dto.setNomecategoria(categoria.getNome());
         return dto;

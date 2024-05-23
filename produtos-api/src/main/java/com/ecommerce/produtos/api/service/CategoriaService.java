@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import com.ecommerce.produtos.api.model.Categoria;
 import com.ecommerce.produtos.api.repository.CategoriaRepository;
 
+
+
 @Service
-public class CategoriaService extends JpaRepository<Categoria, Long> {
+public class CategoriaService {
     public Categoria salvarCategoria(Categoria categoria) {
         return categoriaRespository.save(categoria);
     }
