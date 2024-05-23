@@ -14,11 +14,8 @@ import com.ecommerce.produtos.api.model.Categoria;
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     Optional<List<Categoria>> findByNomeLike(String nome);
 
-    Page<Categoria> obterPaginasCategoria(Pageable page);
+    // Page<Categoria> obterPaginasCategoria(Pageable page);
 
     Optional<Categoria> findById(int id);
-
-    Optional<List<Categoria>> findByNome(String nome);
-
 
 }

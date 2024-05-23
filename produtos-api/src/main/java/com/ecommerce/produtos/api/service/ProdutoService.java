@@ -1,6 +1,6 @@
 package com.ecommerce.produtos.api.service;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,12 +13,21 @@ import com.ecommerce.produtos.api.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
-    public Produto salvarCliente(Produto produto) {
-        return produtoRepository.save(produto);
+    public ProdutoDTO salvarProduto(Produto produto) {
+        return produtoRepository.save(produto).convertToDTO();
     }
 
-    public List<Produto> obterListaClientes() {
-        return produtoRepository.findAll();
+    public ProdutoDTO obterProdutoPeloCodigo(String codigo) {
+        Optional<Produto> produto = produtoRepository.findByCodigo(codigo);
+        if (produto.isPresent()) {
+            return produto.get().convertToDTO();
+        }
+        return null;
+
+    }
+
+    public Page<ProdutoDTO> obterListaProdutos(Pageable pageable) {
+        return produtoRepository.findAll(pageable).map(Produto::convertToDTO);
     }
 
     public Page<ProdutoDTO> obterPaginasProdutos(Pageable page) {

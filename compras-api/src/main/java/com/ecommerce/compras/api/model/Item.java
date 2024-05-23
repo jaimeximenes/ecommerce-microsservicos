@@ -1,5 +1,7 @@
 package com.ecommerce.compras.api.model;
 
+import com.ecommerce.compras.client.compra.ItemDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,13 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "tb_itens")
 public class Item {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,4 +29,13 @@ public class Item {
 
     @Column(nullable = false)
     private double preco;
+
+    public ItemDTO convertToDto() {
+        ItemDTO dto = new ItemDTO();
+        dto.setId(id);
+        dto.setCodigoProduto(codigoProduto);
+        dto.setQuantidade(quantidade);
+        dto.setSubTotal(preco * quantidade);
+        return dto;
+    }
 }

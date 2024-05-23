@@ -19,24 +19,24 @@ public class CategoriaService {
         return categoriaRespository.save(categoria);
     }
 
-    public List<Categoria> obterListaCategoria() {
-        return categoriaRespository.findAll();
-    }
+    // public List<Categoria> obterListaCategoria() {
+    //     return categoriaRespository.findAll();
+    // }
 
-    public Page<Categoria> obterPaginasCategoria(Pageable page) {
-        return categoriaRespository.findAll(page);
-    }
+    // public Page<Categoria> obterPaginasCategoria(Pageable page) {
+    //     return categoriaRespository.findAll(page);
+    // }
 
-    public Optional<List<Categoria>> obterCategoriaPeloNome(String nome) {
+    // public Optional<List<Categoria>> obterCategoriaPeloNome(String nome) {
 
-        Optional<List<Categoria>> categorias = categoriaRespository.findByNome(nome);
+    //     Optional<List<Categoria>> categorias = categoriaRespository.findByNome(nome);
 
-        if (categorias.isEmpty()) {
-            return categoriaRespository.findByNomeLike("%" + nome + "%");
+    //     if (categorias.isEmpty()) {
+    //         return categoriaRespository.findByNomeLike("%" + nome + "%");
 
-        }
-        return null;
-    }
+    //     }
+    //     return null;
+    // }
 
     @Autowired
     private CategoriaRepository categoriaRespository;
