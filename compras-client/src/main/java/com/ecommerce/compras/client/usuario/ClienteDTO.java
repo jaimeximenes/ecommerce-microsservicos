@@ -1,6 +1,4 @@
-package com.ecommerce.usuarios.api.dto;
-
-import com.ecommerce.usuarios.api.model.Endereco;
+package com.ecommerce.compras.client.usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +15,6 @@ public class ClienteDTO {
     private String email;
     private String telefone;
     private Integer idade;
-    private Endereco endereco;
     private String cep;
     private String logradouro;
     private String cidade;
