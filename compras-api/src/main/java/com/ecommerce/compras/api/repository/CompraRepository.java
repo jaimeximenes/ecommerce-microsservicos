@@ -13,7 +13,4 @@ public interface CompraRepository extends JpaRepository<Compra, Long> {
 
     Optional<List<Compra>> findByDataBetween(Date Date);
 
-    // @Query("SELECT c from tb_compras")
-    // Optional<List<Compra>> findByItem(@Param("idItem")Long idItem);
-
 }
